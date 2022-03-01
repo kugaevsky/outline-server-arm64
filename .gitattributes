@@ -1,0 +1,4 @@
+third_party/outline-ss-server/linux/outline-ss-server filter=lfs diff=lfs merge=lfs -text
+third_party/outline-ss-server/macos/outline-ss-server filter=lfs diff=lfs merge=lfs -text
+third_party/prometheus/linux/prometheus filter=lfs diff=lfs merge=lfs -text
+third_party/prometheus/macos/prometheus filter=lfs diff=lfs merge=lfs -text
