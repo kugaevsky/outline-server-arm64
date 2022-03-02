@@ -21,6 +21,6 @@ Port of fancy Jigsaw [Outline server](https://github.com/Jigsaw-Code/outline-ser
 ### Build docker image
 
 ```bash 
-  $ scripts/run_action.sh shadowbox/docker/update_third_party
-  $ DOCKER_CONTENT_TRUST=0 SB_IMAGE=kugaevsky/outline-server-arm64 scripts/run_action.sh shadowbox/docker/build
+  scripts/run_action.sh shadowbox/docker/update_third_party
+  DOCKER_CONTENT_TRUST=0 SB_IMAGE=kugaevsky/outline-server-arm64 scripts/run_action.sh shadowbox/docker/build
 ```
