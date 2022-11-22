@@ -18,18 +18,19 @@ export DOCKER_CONTENT_TRUST="${DOCKER_CONTENT_TRUST:-1}"
 # Enable Docker BuildKit (https://docs.docker.com/develop/develop-images/build_enhancements)
 export DOCKER_BUILDKIT=1
 
-# Newer node images have no valid content trust data.
-# Pin the image node:16.14.0-alpine3.15 by hash.
+# Pin the image node/arm64v8:gallium-alpine3.16.
 # See versions at https://hub.docker.com/_/node/
-readonly NODE_IMAGE="node@sha256:425c81a04546a543da824e67c91d4a603af16fbc3d875ee2f276acf8ec2b1577"
+readonly NODE_IMAGE="arm64v8/node:gallium-alpine3.16"
 
 # Doing an explicit `docker pull` of the container base image to work around an issue where
 # Travis fails to pull the base image when using BuildKit. Seems to be related to:
 # https://github.com/moby/buildkit/issues/606 and https://github.com/moby/buildkit/issues/1397
 docker pull "${NODE_IMAGE}"
-docker build --force-rm \
+docker buildx build --force-rm \
     --build-arg NODE_IMAGE="${NODE_IMAGE}" \
     --build-arg GITHUB_RELEASE="${TRAVIS_TAG:-none}" \
+    --platform=linux/arm64 \
     -f src/shadowbox/docker/Dockerfile \
+    -t "${SB_IMAGE:-outline/shadowbox}:`date +%F`" \
     -t "${SB_IMAGE:-outline/shadowbox}" \
     "${ROOT_DIR}"
