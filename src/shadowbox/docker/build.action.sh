@@ -31,6 +31,6 @@ docker buildx build --force-rm \
     --build-arg GITHUB_RELEASE="${TRAVIS_TAG:-none}" \
     --platform=linux/arm64 \
     -f src/shadowbox/docker/Dockerfile \
-    -t "${SB_IMAGE:-outline/shadowbox}:`date +%F`" \
+    -t "${SB_IMAGE:-outline/shadowbox}:$(date +%F)" \
     -t "${SB_IMAGE:-outline/shadowbox}" \
     "${ROOT_DIR}"
